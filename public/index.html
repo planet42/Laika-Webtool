@@ -12,17 +12,21 @@
 
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <!--<link href="assets/stylesheets/main.css" rel="stylesheet">-->
+    <!--
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    -->
     <link href="stylesheets/main.css" rel="stylesheet">
     
     <link rel="stylesheet" href="stylesheets/angle.css">
     <!--[if IE 7]>
     <link rel="stylesheet" href="stylesheets/angle-ie7.css"><![endif]-->
-
+    
+    
   </head>
 
   <body>
 
-    <div class="row">
+    <div class="row" ng-app="test">
       <div class="left">
         <!--<img src="assets/images/laika-top.png" height="210" width="210"/>-->
         <img src="images/laika-top.png"/>
@@ -44,7 +48,10 @@ Do we need a 4th line?</textarea>
       </div>
       
       <div class="middle">
-        <h1>Raw Document Tree Model <i class="icon-angle-circled-down"></i></h1>
+        <div ng-controller="PanelController">
+        <h1>Raw Document Tree Model <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
+
+        <div collapse="isCollapsed">
         <pre>Document - Blocks: 2
 . BulletList(StringBullet(*)) - Elements: 3
 . . BulletListItem(StringBullet(*)) - Blocks: 1
@@ -57,9 +64,12 @@ Do we need a 4th line?</textarea>
 . . . SpanSequence - Spans: 1
 . . . . Text - '3rd line here'
 . Paragraph - Spans: 1
-. . Text - 'What do you think?|Do we need a 4th line?'</pre>
+. . Text - 'What do you think?|Do we need a 4th line?'</pre></div></div>
+             
+        <div ng-controller="PanelController" class="bottom-panel"> 
+        <h1>Rewritten Document Tree Model <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
+        <div collapse="isCollapsed">
         
-        <h1>Rewritten Document Tree Model <i class="icon-angle-circled-down"></i></h1>
         <pre>Document - Blocks: 2
 . BulletList(StringBullet(*)) - Elements: 3
 . . BulletListItem(StringBullet(*)) - Blocks: 1
@@ -72,12 +82,14 @@ Do we need a 4th line?</textarea>
 . . . SpanSequence - Spans: 1
 . . . . Text - '3rd line here'
 . Paragraph - Spans: 1
-. . Text - 'What do you think?|Do we need a 4th line?'</pre>
+. . Text - 'What do you think?|Do we need a 4th line?'</pre></div></div>
       </div>
       
-      
       <div class="right">
-        <h1>HTML Source <i class="icon-angle-circled-down"></i></h1>
+        <div ng-controller="PanelController">
+        <h1>HTML Source <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
+        <div collapse="isCollapsed">
+        
         <pre>&lt;div&gt;
   &lt;ul&gt;
     &lt;li&gt;1st line here&lt;/li&gt;
@@ -86,9 +98,12 @@ Do we need a 4th line?</textarea>
   &lt;/ul&gt;
   &lt;p>What do you think?
   Do we need a 4th line?&lt;/p&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</pre></div></div>
         
-        <h1>Rendered HTML <i class="icon-angle-circled-down"></i></h1>
+        <div ng-controller="PanelController" class="bottom-panel">
+        <h1>Rendered HTML <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
+        <div collapse="isCollapsed">
+        
         <div class="output">
   <ul>
     <li>1st line here</li>
@@ -96,10 +111,24 @@ Do we need a 4th line?</textarea>
     <li>3rd line here</li>
   </ul>
   <p>What do you think?
-  Do we need a 4th line?</p>
+  Do we need a 4th line?</p></div></div>
 </div>
       </div>
+
     </div>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="javascripts/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
+    
+    <script>
+    
+    angular.module('test', ['ui.bootstrap']);
+
+    function PanelController($scope) {
+      $scope.isCollapsed = false;
+    }
+    </script>
 
   </body>
 </html>
