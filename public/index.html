@@ -26,107 +26,158 @@
 
   <body>
 
-    <div class="row" ng-app="test">
-      <div class="left">
+    <div class="row" ng-app="webtool">
+
+      <div class="left" ng-controller="InputController">
+
         <!--<img src="assets/images/laika-top.png" height="210" width="210"/>-->
         <img src="images/laika-top.png"/>
         <h2>Transformer Webtool</h2>
         
         <h1>Input</h1>
         <div class="input">
-        <div class="btn-group" data-toggle="buttons-radio">
-          <button type="button" class="btn active2">Markdown</button>
-          <button type="button" class="btn">reStructuredText</button>
+          <div class="btn-group">
+            <button type="button" class="btn active" ng-model="markup" btn-radio="'Markdown'">Markdown</button>
+            <button type="button" class="btn" ng-model="markup" btn-radio="'reStructuredText'">reStructuredText</button>
+          </div>
+          <textarea ng-model="input" ng-change="textChanged()"></textarea>
+          <div class="counter"><span ng-class="getClass()">{{input.length}} characters</span> ({{maxChars}} max)</div>
         </div>
-        <textarea>* 1st line here
-* 2nd line here
-* 3rd line here
 
-What do you think?
-Do we need a 4th line?</textarea>
-</div>
       </div>
       
       <div class="middle">
-        <div ng-controller="PanelController">
-        <h1>Raw Document Tree Model <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
 
-        <div collapse="isCollapsed">
-        <pre>Document - Blocks: 2
-. BulletList(StringBullet(*)) - Elements: 3
-. . BulletListItem(StringBullet(*)) - Blocks: 1
-. . . SpanSequence - Spans: 1
-. . . . Text - '1st line here'
-. . BulletListItem(StringBullet(*)) - Blocks: 1
-. . . SpanSequence - Spans: 1
-. . . . Text - '2nd line here'
-. . BulletListItem(StringBullet(*)) - Blocks: 1
-. . . SpanSequence - Spans: 1
-. . . . Text - '3rd line here'
-. Paragraph - Spans: 1
-. . Text - 'What do you think?|Do we need a 4th line?'</pre></div></div>
-             
+        <div ng-controller="PanelController">
+          <div class="title-bar">
+            <div class="title">Raw Document Tree Model</div>
+            <div class="collapse-button">
+              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+            </div>
+          </div>
+          <div collapse="isCollapsed">
+            <pre>{{lastResult.rawTree}}</pre>
+          </div>
+        </div>
+               
         <div ng-controller="PanelController" class="bottom-panel"> 
-        <h1>Rewritten Document Tree Model <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
-        <div collapse="isCollapsed">
-        
-        <pre>Document - Blocks: 2
-. BulletList(StringBullet(*)) - Elements: 3
-. . BulletListItem(StringBullet(*)) - Blocks: 1
-. . . SpanSequence - Spans: 1
-. . . . Text - '1st line here'
-. . BulletListItem(StringBullet(*)) - Blocks: 1
-. . . SpanSequence - Spans: 1
-. . . . Text - '2nd line here'
-. . BulletListItem(StringBullet(*)) - Blocks: 1
-. . . SpanSequence - Spans: 1
-. . . . Text - '3rd line here'
-. Paragraph - Spans: 1
-. . Text - 'What do you think?|Do we need a 4th line?'</pre></div></div>
+          <div class="title-bar">
+            <div class="title">Rewritten Document Tree Model</div>
+            <div class="collapse-button">
+              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+            </div>
+          </div>
+          <div collapse="isCollapsed">
+            <pre>{{lastResult.rewrittenTree}}</pre>
+          </div>
+        </div>
+      
       </div>
       
       <div class="right">
+    
         <div ng-controller="PanelController">
-        <h1>HTML Source <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
-        <div collapse="isCollapsed">
-        
-        <pre>&lt;div&gt;
-  &lt;ul&gt;
-    &lt;li&gt;1st line here&lt;/li&gt;
-    &lt;li&gt;2nd line here&lt;/li&gt;
-    &lt;li&gt;3rd line here&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;p>What do you think?
-  Do we need a 4th line?&lt;/p&gt;
-&lt;/div&gt;</pre></div></div>
+          <div class="title-bar">
+            <div class="title">HTML Source</div>
+            <div class="collapse-button">
+              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+            </div>
+          </div>
+          <div collapse="isCollapsed">
+            <pre>{{lastResult.html}}</pre>
+          </div>
+        </div>
         
         <div ng-controller="PanelController" class="bottom-panel">
-        <h1>Rendered HTML <a ng-click="isCollapsed = !isCollapsed"><i class="icon-angle-circled-down"></i></a></h1>
-        <div collapse="isCollapsed">
-        
-        <div class="output">
-  <ul>
-    <li>1st line here</li>
-    <li>2nd line here</li>
-    <li>3rd line here</li>
-  </ul>
-  <p>What do you think?
-  Do we need a 4th line?</p></div></div>
-</div>
+          <div class="title-bar">
+            <div class="title">Rendered HTML</div>
+            <div class="collapse-button">
+              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+            </div>
+          </div>
+          <div collapse="isCollapsed">
+            <div class="output" ng-bind-html-unsafe="lastResult.html">
+            </div>
+          </div>
+        </div>
+    
       </div>
-
+    
     </div>
     
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="javascripts/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
+    <script src="javascripts/second/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
     
     <script>
+    // TODO - temporary embed here for testing, will be written in coffeescript later
     
-    angular.module('test', ['ui.bootstrap']);
+    angular.module('transformer', []).
+     factory('transformer', function($q, $rootScope) {
+        return {
+          transform: function(text) {
+            var deferred = $q.defer();
+ 
+            setTimeout(function() {
+              $rootScope.$apply(function() {
+                var result = "Transformed: " + text;
+                deferred.resolve({ rawTree: result, rewrittenTree: result, html: result });
+              });
+            }, 1000);
+           
+            return deferred.promise;
+          }
+      };
+    });
+    
+    angular.module('webtool', ['ui.bootstrap', 'transformer']);
 
     function PanelController($scope) {
+      var downIcon = "&#xe807;"
+      var upIcon = "&#xe806;"
+      
       $scope.isCollapsed = false;
+      $scope.collapseIcon = downIcon
+      
+      $scope.$watch('isCollapsed', function(newValue, oldValue) { 
+        $scope.collapseIcon = (newValue) ? upIcon : downIcon;     
+      });
+    }
+    function InputController($scope, $rootScope, $timeout, transformer) {
+      
+      $scope.maxChars = 500;
+      $scope.input = "";
+      $scope.markup = "Markdown";
+      
+      var currentTimeout;
+      var idleTime = 1500; // the time we wait when the user stops typing
+      
+      function init () {
+        $rootScope.lastResult = { rawTree: '- (raw)', rewrittenTree: '- (rewritten)', html: '<div>\n  <p>Blablabla</p>\n</div>' }
+      }
+      
+      function transform () {
+        if ($scope.input == "") { init(); return; }
+        var tempInput = $scope.markup + ":\n\n" + $scope.input
+        transformer.transform(tempInput).then(function(value) {
+          $rootScope.lastResult = value
+        }); 
+      }
+      
+      $scope.$watch('markup', function(newValue, oldValue) { 
+        transform();
+      });
+      
+      $scope.textChanged = function () {
+        if (currentTimeout) $timeout.cancel(currentTimeout);
+        currentTimeout = $timeout(function () {
+          transform();
+        }, idleTime);     
+      };
+      
+      $scope.getClass = function () {
+        return ($scope.input.length > $scope.maxChars) ? "red" : "";
+      };
     }
     </script>
 
