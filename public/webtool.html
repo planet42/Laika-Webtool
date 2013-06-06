@@ -118,7 +118,7 @@
  
             setTimeout(function() { // TODO - use $timeout instead
               $rootScope.$apply(function() {
-                var result = "Transformed: " + text;
+                var result = "Transformed " + format + ": " + text;
                 deferred.resolve({ rawTree: result, rewrittenTree: result, html: result });
               });
             }, 1000);
@@ -164,8 +164,14 @@
         $rootScope.lastResult = { rawTree: 'Transformation starts a second after you stop typing', rewrittenTree: ' ', html: ' ' }
       }
       
+      function inputTooLong () {
+        return $scope.input.length > $scope.maxChars;
+      }
+      
       function transform () {
         if ($scope.input == "") { init(); return; }
+        if (inputTooLong()) return;
+        
         transformer.transform($scope.markup, $scope.input).then(function(result) {
           $rootScope.lastResult = result.data
         },
@@ -186,7 +192,7 @@
       };
       
       $scope.statusClass = function () {
-        return ($scope.input.length > $scope.maxChars) ? "red" : "";
+        return (inputTooLong()) ? "red" : "";
       };
     }
     </script>
