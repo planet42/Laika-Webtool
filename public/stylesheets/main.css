@@ -137,6 +137,9 @@ pre, .output {
   padding: 9.5px;
   margin: 0px;
   line-height: 20px;
+  min-height: 20px;
+  
+  word-wrap: break-word;
 }
 
 pre {
@@ -274,6 +277,33 @@ pre {
   -moz-border-radius: 3px;
 }
 
+.output a {
+  color: #931813;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.output h1 {
+  color: #006180;
+  background-color: #ebf6f7;
+}
+
+.output ol.lowerroman {
+  list-style-type:lower-roman
+}
+
+.output ol.upperroman {
+  list-style-type:upper-roman
+}
+
+.output ol.loweralpha {
+  list-style-type:lower-alpha
+}
+
+.output ol.upperalpha {
+  list-style-type:upper-alpha
+}
+
 @media (max-width: 1536px) {
   .right {
     float: none;
@@ -312,6 +342,7 @@ pre {
   
   .row {
     width: 480px;
+    margin-top: 30px;
   }
   
 }
