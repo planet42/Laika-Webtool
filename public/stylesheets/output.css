@@ -1,8 +1,12 @@
 
 .output a {
   color: #931813;
-  text-decoration: underline;
   cursor: pointer;
+  font-weight: bold;
+}
+
+.output a:hover {
+  text-decoration: underline;
 }
 
 .output h1, .output h2, .output h3, .output h4, .output h5, .output h6 {
