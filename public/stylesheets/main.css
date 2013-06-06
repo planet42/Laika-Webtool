@@ -277,32 +277,6 @@ pre {
   -moz-border-radius: 3px;
 }
 
-.output a {
-  color: #931813;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.output h1 {
-  color: #006180;
-  background-color: #ebf6f7;
-}
-
-.output ol.lowerroman {
-  list-style-type:lower-roman
-}
-
-.output ol.upperroman {
-  list-style-type:upper-roman
-}
-
-.output ol.loweralpha {
-  list-style-type:lower-alpha
-}
-
-.output ol.upperalpha {
-  list-style-type:upper-alpha
-}
 
 @media (max-width: 1536px) {
   .right {
