@@ -40,61 +40,65 @@
 
       </div>
       
-      <div class="middle">
-
-        <div ng-controller="PanelController">
-          <div class="title-bar">
-            <div class="title">Raw Document Tree Model</div>
-            <div class="collapse-button">
-              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
-            </div>
-          </div>
-          <div collapse="isCollapsed">
-            <pre>{{lastResult.rawTree}}</pre>
-          </div>
-        </div>
-               
-        <div ng-controller="PanelController" class="bottom-panel"> 
-          <div class="title-bar">
-            <div class="title">Rewritten Document Tree Model</div>
-            <div class="collapse-button">
-              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
-            </div>
-          </div>
-          <div collapse="isCollapsed">
-            <pre>{{lastResult.rewrittenTree}}</pre>
-          </div>
-        </div>
+      <div class="middle-right">
       
-      </div>
-      
-      <div class="right">
-    
-        <div ng-controller="PanelController">
-          <div class="title-bar">
-            <div class="title">HTML Source</div>
-            <div class="collapse-button">
-              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+        <div class="middle">
+  
+          <div ng-controller="PanelController">
+            <div class="title-bar">
+              <div class="title">Raw Document Tree Model</div>
+              <div class="collapse-button">
+                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+              </div>
+            </div>
+            <div collapse="isCollapsed">
+              <pre>{{lastResult.rawTree}}</pre>
             </div>
           </div>
-          <div collapse="isCollapsed">
-            <pre>{{lastResult.html}}</pre>
+                 
+          <div ng-controller="PanelController" class="bottom-panel"> 
+            <div class="title-bar">
+              <div class="title">Rewritten Document Tree Model</div>
+              <div class="collapse-button">
+                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+              </div>
+            </div>
+            <div collapse="isCollapsed">
+              <pre>{{lastResult.rewrittenTree}}</pre>
+            </div>
           </div>
+        
         </div>
         
-        <div ng-controller="PanelController" class="bottom-panel">
-          <div class="title-bar">
-            <div class="title">Rendered HTML</div>
-            <div class="collapse-button">
-              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+        <div class="right">
+      
+          <div ng-controller="PanelController">
+            <div class="title-bar">
+              <div class="title">HTML Source</div>
+              <div class="collapse-button">
+                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+              </div>
+            </div>
+            <div collapse="isCollapsed">
+              <pre>{{lastResult.html}}</pre>
             </div>
           </div>
-          <div collapse="isCollapsed">
-            <div class="output" ng-bind-html-unsafe="lastResult.html">
+          
+          <div ng-controller="PanelController" class="bottom-panel">
+            <div class="title-bar">
+              <div class="title">Rendered HTML</div>
+              <div class="collapse-button">
+                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+              </div>
+            </div>
+            <div collapse="isCollapsed">
+              <div class="output" ng-bind-html-unsafe="lastResult.html">
+              </div>
             </div>
           </div>
+      
         </div>
-    
+        
       </div>
     
     </div>
