@@ -11,14 +11,10 @@
     <meta name="keywords" content="scala, laika, text, markup, markdown, restructuredtext, parser, transformer, html, open-source" />
 
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <!--
     <link href="assets/stylesheets/main.css" rel="stylesheet">
     <link href="assets/stylesheets/angle.css" rel="stylesheet">
-    -->
-    <link href="stylesheets/main.css" rel="stylesheet">
-    <link href="stylesheets/angle.css" rel="stylesheet">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="stylesheets/angle-ie7.css"><![endif]-->
+    <link rel="stylesheet" href="assets/stylesheets/angle-ie7.css"><![endif]-->
     
     
   </head>
@@ -29,8 +25,7 @@
 
       <div class="left" ng-controller="InputController">
 
-        <!--<img src="assets/images/laika-top.png" height="210" width="210"/>-->
-        <img src="images/laika-top.png"/>
+        <img src="assets/images/laika-top.png"/>
         <h2>Transformer Webtool</h2>
         
         <h1>Input</h1>
@@ -40,7 +35,7 @@
             <button type="button" class="btn" ng-model="markup" btn-radio="'reStructuredText'">reStructuredText</button>
           </div>
           <textarea ng-model="input" ng-change="textChanged()"></textarea>
-          <div class="counter"><span ng-class="getClass()">{{input.length}} characters</span> ({{maxChars}} max)</div>
+          <div class="counter"><span ng-class="statusClass()">{{input.length}} characters</span> ({{maxChars}} max)</div>
         </div>
 
       </div>
@@ -106,18 +101,18 @@
     
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="javascripts/second/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
+    <script src="assets/javascripts/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
     
     <script>
     // TODO - temporary embed here for testing, will be written in coffeescript later
     
-    angular.module('transformer', []).
+    angular.module('transformer-mock', []).
      factory('transformer', function($q, $rootScope) {
         return {
-          transform: function(text) {
+          transform: function(format, text) {
             var deferred = $q.defer();
  
-            setTimeout(function() {
+            setTimeout(function() { // TODO - use $timeout instead
               $rootScope.$apply(function() {
                 var result = "Transformed: " + text;
                 deferred.resolve({ rawTree: result, rewrittenTree: result, html: result });
@@ -125,6 +120,16 @@
             }, 1000);
            
             return deferred.promise;
+          }
+      };
+    });
+    
+    angular.module('transformer', []).
+     factory('transformer', function($http, $rootScope) {
+        return {
+          transform: function(format, text) {
+            var url = /transform/ + format.toLowerCase();
+            return $http.post(url, text, {headers: {"Content-Type": "text/plain"}}); 
           }
       };
     });
@@ -152,14 +157,13 @@
       var idleTime = 1500; // the time we wait when the user stops typing
       
       function init () {
-        $rootScope.lastResult = { rawTree: '- (raw)', rewrittenTree: '- (rewritten)', html: '<div>\n  <p>Blablabla</p>\n</div>' }
+        $rootScope.lastResult = { rawTree: 'Transformation starts a second after you stop typing', rewrittenTree: ' ', html: ' ' }
       }
       
       function transform () {
         if ($scope.input == "") { init(); return; }
-        var tempInput = $scope.markup + ":\n\n" + $scope.input
-        transformer.transform(tempInput).then(function(value) {
-          $rootScope.lastResult = value
+        transformer.transform($scope.markup, $scope.input).then(function(result) {
+          $rootScope.lastResult = result.data
         }); 
       }
       
@@ -174,7 +178,7 @@
         }, idleTime);     
       };
       
-      $scope.getClass = function () {
+      $scope.statusClass = function () {
         return ($scope.input.length > $scope.maxChars) ? "red" : "";
       };
     }
