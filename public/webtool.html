@@ -11,10 +11,10 @@
     <meta name="keywords" content="scala, laika, text, markup, markdown, restructuredtext, parser, transformer, html, open-source" />
 
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href="assets/stylesheets/main.css" rel="stylesheet">
-    <link href="assets/stylesheets/angle.css" rel="stylesheet">
+    <link href="stylesheets/main.css" rel="stylesheet">
+    <link href="stylesheets/angle.css" rel="stylesheet">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="assets/stylesheets/angle-ie7.css"><![endif]-->
+    <link rel="stylesheet" href="stylesheets/angle-ie7.css"><![endif]-->
     
     
   </head>
@@ -105,7 +105,7 @@
     
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="assets/javascripts/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
+    <script src="javascripts/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
     
     <script>
     // TODO - temporary embed here for testing, will be written in coffeescript later
@@ -168,6 +168,9 @@
         if ($scope.input == "") { init(); return; }
         transformer.transform($scope.markup, $scope.input).then(function(result) {
           $rootScope.lastResult = result.data
+        },
+        function(error) {
+          $rootScope.lastResult = { rawTree: 'Server Error (' + error.status + ')', rewrittenTree: ' ', html: ' ' }
         }); 
       }
       
