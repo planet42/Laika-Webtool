@@ -29,7 +29,7 @@ trait TransformMarkup {
     val html = render from rewrittenTree toString
     
     toJson(Map(
-      "rawTree"       -> toJson(rawTree.toString.trim),
+      "rawTree"       -> toJson(rawTree.document.toString.trim),
       "rewrittenTree" -> toJson(rewrittenTree.toString.trim),
       "html"          -> toJson(html.trim)
      ))
