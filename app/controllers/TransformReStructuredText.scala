@@ -1,11 +1,9 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
 import laika.api.Parse
 import laika.parse.rst.ReStructuredText
 
-object TransformReStructuredText extends Controller with TransformMarkup {
+object TransformReStructuredText extends TransformMarkup {
 
   def newParser = Parse as ReStructuredText
   

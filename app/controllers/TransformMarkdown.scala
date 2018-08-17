@@ -1,11 +1,9 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
 import laika.api.Parse
 import laika.parse.markdown.Markdown
 
-object TransformMarkdown extends Controller with TransformMarkup {
+object TransformMarkdown extends TransformMarkup {
 
   def newParser = Parse as Markdown
   
