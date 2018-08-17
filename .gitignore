@@ -1,15 +1,33 @@
-logs
-project/project
-project/target
-target
-tmp
-.history
-/.settings/
-/.target/
-/bin/
-/.project
-/.classpath
-/.cache
-/.DS_Store
-dist
-/RUNNING_PID
+*.class
+*.log
+.localdocs/
+
+# SBT
+test-output/
+.cache/
+.history/
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.sbtrc
+
+# IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Mac
+.DS_Store
+
+# Other
+*.pyc
+.*.swp
+\#*#
+*~
+.#*
