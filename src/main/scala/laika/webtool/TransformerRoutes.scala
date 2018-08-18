@@ -29,11 +29,9 @@ object TransformerRoutes {
 
   def all: Route = {
 
-    path("transform" / Map("md" -> Markdown, "rst" -> ReStructuredText)) { format =>
-      post {
-        entity(as[String]) { input =>
-          complete(HttpEntity(ContentTypes.`application/json`, Transformer.transform(format, input)))
-        }
+    (post & path("transform" / Map("md" -> Markdown, "rst" -> ReStructuredText))) { format =>
+      entity(as[String]) { input =>
+        complete(HttpEntity(ContentTypes.`application/json`, Transformer.transform(format, input)))
       }
     }
 
