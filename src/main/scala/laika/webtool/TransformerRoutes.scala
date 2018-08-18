@@ -16,23 +16,26 @@
 
 package laika.webtool
 
-import akka.actor.ActorSystem
-import akka.http.scaladsl.Http
-import akka.stream.ActorMaterializer
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
+import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Route
+import laika.parse.markdown.Markdown
+import laika.parse.rst.ReStructuredText
 
 /**
   * @author Jens Halm
   */
-object Main {
+object TransformerRoutes {
 
-  def main (args: Array[String]): Unit = {
+  def all: Route = {
 
-    val serviceName = "Laika-Webtool"
-
-    implicit val system = ActorSystem(serviceName)
-    implicit val mat = ActorMaterializer()
-
-    Http().bindAndHandle(TransformerRoutes.all, "localhost", 8080)
+    path("transform" / Map("md" -> Markdown, "rst" -> ReStructuredText)) { format =>
+      post {
+        entity(as[String]) { input =>
+          complete(HttpEntity(ContentTypes.`application/json`, Transformer.transform(format, input)))
+        }
+      }
+    }
 
   }
 

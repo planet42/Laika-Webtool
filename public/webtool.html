@@ -32,8 +32,8 @@
         <h1>Input</h1>
         <div class="input">
           <div class="btn-group">
-            <button type="button" class="btn active" ng-model="markup" btn-radio="'Markdown'">Markdown</button>
-            <button type="button" class="btn" ng-model="markup" btn-radio="'reStructuredText'">reStructuredText</button>
+            <button type="button" class="btn active" ng-model="markup" btn-radio="'md'">Markdown</button>
+            <button type="button" class="btn" ng-model="markup" btn-radio="'rst'">reStructuredText</button>
           </div>
           <textarea ng-model="input" ng-change="textChanged()"></textarea>
           <div class="counter"><span ng-class="statusClass()">{{input.length}} characters</span> ({{maxChars}} max)</div>
