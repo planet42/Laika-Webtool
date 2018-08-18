@@ -16,27 +16,23 @@
 
 package laika.webtool
 
-import akka.actor.ActorSystem
-import akka.http.scaladsl.Http
+import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
-import akka.stream.ActorMaterializer
+import akka.http.scaladsl.server.Route
 
 /**
   * @author Jens Halm
   */
-object Main {
+object StaticRoutes {
 
-  def main (args: Array[String]): Unit = {
 
-    val serviceName = "Laika-Webtool"
-
-    implicit val system = ActorSystem(serviceName)
-    implicit val mat = ActorMaterializer()
-
-    val routes = TransformerRoutes.all ~ StaticRoutes.all
-
-    Http().bindAndHandle(routes, "localhost", 8080)
-
+  val all: Route = {
+    (pathEndOrSingleSlash & redirectToTrailingSlashIfMissing(StatusCodes.TemporaryRedirect)) {
+      getFromResource("public/webtool.html")
+    } ~ pathPrefix("assets") {
+      getFromResourceDirectory("public")
+    }
   }
+
 
 }
