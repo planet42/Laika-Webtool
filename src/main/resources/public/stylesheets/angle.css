@@ -1,24 +1,9 @@
 @font-face {
   font-family: 'angle';
   src: url('../font/angle.woff?11170821') format('woff');
-  /*src: url('../font/angle.eot?11170821');
-  src: url('../font/angle.eot?11170821#iefix') format('embedded-opentype'),
-       url('../font/angle.woff?11170821') format('woff'),
-       url('../font/angle.ttf?11170821') format('truetype'),
-       url('../font/angle.svg?11170821#angle') format('svg');*/
   font-weight: normal;
   font-style: normal;
 }
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'angle';
-    src: url('../font/angle.svg?11170821#angle') format('svg');
-  }
-}
-*/
  
 .icon {
   font-family: "angle";
@@ -32,8 +17,7 @@
   margin-top: .07em;
   margin-right: .3em;
   text-align: center;
-  /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
@@ -43,12 +27,8 @@
  
   /* you can be more comfortable with increased icons size */
   font-size: 110%;
-  
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
 .icon:hover {
   color: #d8ebed; 
 }
-

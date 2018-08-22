@@ -57,10 +57,6 @@
   
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
-  -webkit-border-top-left-radius: 7px;
-  -webkit-border-top-right-radius: 7px;
-  -moz-border-radius-topleft: 7px;
-  -moz-border-radius-topright: 7px;
 }
 
 .output blockquote {
