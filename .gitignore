@@ -25,6 +25,9 @@ out/
 # Mac
 .DS_Store
 
+#npm
+node_modules/
+
 # Other
 *.pyc
 .*.swp
