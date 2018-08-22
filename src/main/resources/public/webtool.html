@@ -14,17 +14,14 @@
     <link href="/assets/stylesheets/main.css" rel="stylesheet">
     <link href="/assets/stylesheets/output.css" rel="stylesheet">
     <link href="/assets/stylesheets/angle.css" rel="stylesheet">
-    <!--[if IE 7]>
-    <link rel="/assets/stylesheet" href="stylesheets/angle-ie7.css"><![endif]-->
-    
-    
+
   </head>
 
   <body>
 
-    <div class="row" ng-app="webtool">
+    <div class="row">
 
-      <div class="left" ng-controller="InputController">
+      <div class="left">
 
         <img src="/assets/images/laika-top.png"/>
         <h2>Transformer Webtool</h2>
@@ -32,21 +29,21 @@
         <h1>Input</h1>
         <div class="input">
           <div class="btn-group">
-            <button type="button" class="btn active" ng-model="markup" btn-radio="'md'">Markdown</button>
-            <button type="button" class="btn" ng-model="markup" btn-radio="'rst'">reStructuredText</button>
+            <button type="button" class="btn active">Markdown</button>
+            <button type="button" class="btn">reStructuredText</button>
           </div>
-          <textarea ng-model="input" ng-change="textChanged()"></textarea>
-          <div class="counter"><span ng-class="statusClass()">{{input.length}} characters</span> ({{maxChars}} max)</div>
+          <textarea></textarea>
+          <div class="counter"><span>{{input.length}} characters</span> ({{maxChars}} max)</div>
         </div>
         
-        <div ng-controller="PanelController" class="bottom-panel">
+        <div class="bottom-panel">
           <div class="title-bar">
             <div class="title">Documentation</div>
             <div class="collapse-button">
-              <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+              <a><i class="icon"></i></a>
             </div>
           </div>
-          <div collapse="isCollapsed">
+          <div>
             <div class="docs">
               <p>The Laika Webtool currently uses the 0.8.0 release of Laika.</p>
               <p>Transformation starts automatically one second after you stop typing.</p>
@@ -69,11 +66,11 @@
       
         <div class="middle">
   
-          <div ng-controller="PanelController">
+          <div>
             <div class="title-bar">
               <div class="title">Raw Document Tree Model</div>
               <div class="collapse-button">
-                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+                <a><i class="icon"></i></a>
               </div>
             </div>
             <div collapse="isCollapsed">
@@ -81,14 +78,14 @@
             </div>
           </div>
                  
-          <div ng-controller="PanelController" class="bottom-panel"> 
+          <div class="bottom-panel">
             <div class="title-bar">
               <div class="title">Rewritten Document Tree Model</div>
               <div class="collapse-button">
-                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+                <a><i class="icon"></i></a>
               </div>
             </div>
-            <div collapse="isCollapsed">
+            <div>
               <pre>{{lastResult.rewrittenTree}}</pre>
             </div>
           </div>
@@ -97,11 +94,11 @@
         
         <div class="right">
       
-          <div ng-controller="PanelController">
+          <div>
             <div class="title-bar">
               <div class="title">HTML Source</div>
               <div class="collapse-button">
-                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+                <a><i class="icon"></i></a>
               </div>
             </div>
             <div collapse="isCollapsed">
@@ -109,15 +106,15 @@
             </div>
           </div>
           
-          <div ng-controller="PanelController" class="bottom-panel">
+          <div class="bottom-panel">
             <div class="title-bar">
               <div class="title">Rendered HTML</div>
               <div class="collapse-button">
-                <a ng-click="isCollapsed = !isCollapsed"><i class="icon" ng-bind-html-unsafe="collapseIcon"></i></a>
+                <a><i class="icon"></i></a>
               </div>
             </div>
-            <div collapse="isCollapsed">
-              <div class="output" ng-bind-html-unsafe="lastResult.html">
+            <div>
+              <div class="output">
               </div>
             </div>
           </div>
@@ -129,19 +126,17 @@
     </div>
     
     
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="/assets/javascripts/ui-bootstrap-custom-0.4.0-SNAPSHOT.min.js"></script>
     
     <script>
-    // TODO - temporary embed here for testing, will be written in coffeescript later
-    
+
     angular.module('transformer-mock', []).
      factory('transformer', function($q, $rootScope) {
         return {
           transform: function(format, text) {
             var deferred = $q.defer();
  
-            setTimeout(function() { // TODO - use $timeout instead
+            setTimeout(function() {
               $rootScope.$apply(function() {
                 var result = "Transformed " + format + ": " + text;
                 deferred.resolve({ rawTree: result, rewrittenTree: result, html: result });
