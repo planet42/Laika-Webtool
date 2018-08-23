@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import '../css/main.css'; 
+import logo from '../images/laika-top.png'
 
 class App extends Component {
   render() {
     return (
       <div className="row">
-
+ 
         <div className="left">
 
-          <img src="/assets/images/laika-top.png"/>
+          <img src={logo}/>
           <h2>Transformer Webtool</h2>
           
           <h1>Input</h1>
