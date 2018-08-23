@@ -31,15 +31,6 @@ body {
   float: left;
 }
 
-.input {
-  background-color: #ebf6f7;
-  padding: 5px;
-  border: 1px solid #c3d6d8;
-  
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-}
-
 h1, .title-bar {
   font-family: 'Ubuntu', sans-serif;
   font-weight: normal;
@@ -114,9 +105,17 @@ textarea {
   border-radius: 7px;
 }
 
+.input {
+  background-color: #ebf6f7;
+  border: 1px solid #c3d6d8;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+
+  padding: 5px;
+}
+
 pre, .output, .docs {
   background-color: #ebf6f7;
-
   border: 1px solid #c3d6d8;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
