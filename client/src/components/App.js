@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TitleBar from './TitleBar.js'
 import '../css/main.css'; 
 import logo from '../images/laika-top.png'
 
@@ -23,12 +24,7 @@ class App extends Component {
           </div>
           
           <div className="bottom-panel">
-            <div className="title-bar">
-              <div className="title">Documentation</div>
-              <div className="collapse-button">
-                <a><i className="icon"></i></a>
-              </div>
-            </div>
+            <TitleBar title="Documentation" />
             <div>
               <div className="docs">
                 <p>The Laika Webtool currently uses the 0.8.0 release of Laika.</p>
@@ -54,24 +50,14 @@ class App extends Component {
         <div className="middle">
   
           <div>
-            <div className="title-bar">
-              <div className="title">Raw Document Tree Model</div>
-              <div className="collapse-button">
-                <a><i className="icon"></i></a>
-              </div>
-            </div>
+            <TitleBar title="Raw Document Tree Model" />
             <div>
               <pre>[[lastResult_rawTree]]</pre>
             </div>
           </div>
                  
           <div className="bottom-panel">
-            <div className="title-bar">
-              <div className="title">Rewritten Document Tree Model</div>
-              <div className="collapse-button">
-                <a><i className="icon"></i></a>
-              </div>
-            </div>
+            <TitleBar title="Rewritten Document Tree Model" />
             <div>
               <pre>[[lastResult_rewrittenTree]]</pre>
             </div>
@@ -82,24 +68,14 @@ class App extends Component {
         <div className="right">
       
           <div>
-            <div className="title-bar">
-              <div className="title">HTML Source</div>
-              <div className="collapse-button">
-                <a><i className="icon"></i></a>
-              </div>
-            </div>
+            <TitleBar title="HTML Source" />
             <div>
               <pre>[[lastResult_html]]</pre>
             </div>
           </div>
           
           <div className="bottom-panel">
-            <div className="title-bar">
-              <div className="title">Rendered HTML</div>
-              <div className="collapse-button">
-                <a><i className="icon"></i></a>
-              </div>
-            </div>
+            <TitleBar title="Rendered HTML" />
             <div>
               <div className="output">
               </div>
