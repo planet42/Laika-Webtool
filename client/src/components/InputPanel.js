@@ -17,28 +17,22 @@ class InputPanel extends Component {
   eventDelay = 1500
   maxInputChars = 500
 
-  inputTooLong = input => input.length > this.maxInputChars
+  inputTooLong = () => this.state.markupInput.length > this.maxInputChars
 
-  fireEvent = (format, input) => { if (!this.inputTooLong(input)) this.props.onChange(format, input) }
+  fireEvent = () => { if (!this.inputTooLong()) this.props.onChange(this.state.selectedFormat, this.state.markupInput) }
 
-  scheduleEvent = newInput => {
+  scheduleEvent = () => {
     if (this.timeout) clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => this.fireEvent(this.state.selectedFormat, newInput), this.eventDelay);
+    this.timeout = setTimeout(this.fireEvent, this.eventDelay);
   }
 
-  handleFormatChange = newFormat => {
-    this.fireEvent(newFormat, this.state.markupInput);
-    this.setState({ selectedFormat: newFormat }); 
-  }
+  handleFormatChange = newFormat => { this.setState({ selectedFormat: newFormat }, this.fireEvent); }
 
-  handleInputChange = event => {
-    const newInput = event.target.value;
-    this.scheduleEvent(newInput);
-    this.setState({ markupInput: newInput }); 
-  }
+  handleInputChange = event => { this.setState({ markupInput: event.target.value }, this.scheduleEvent); }
 
   render() {
-    const counterClass = this.inputTooLong(this.state.markupInput) ? "red" : undefined
+    const numInputChars = this.state.markupInput.length;
+    const counterClass = this.inputTooLong() ? "red" : undefined;
     return (
       <div>
         
@@ -48,7 +42,7 @@ class InputPanel extends Component {
           <ButtonGroup items={this.formats} value={this.state.selectedFormat} onChange={this.handleFormatChange}/>
           <textarea defaultValue={""} onChange={this.handleInputChange}/>
           <div className="counter">
-            <span className={counterClass}>{this.state.markupInput.length} characters</span> ({this.maxInputChars} max)
+            <span className={counterClass}>{numInputChars} characters</span> ({this.maxInputChars} max)
           </div>
         </div>
         
