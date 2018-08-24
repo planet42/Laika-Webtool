@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 class ButtonGroup extends Component {
   render() {
     const buttons = this.props.items.map( item => {
-      const classes = item.value == this.props.value ? "btn active" : "btn"  
+      const active = item.value == this.props.value  
+      const classes = active ? "btn active" : "btn"  
       return (
         <button
           type="button"
           key={item.value}
           className={classes}
-          onClick={e => this.props.onChange(item.value)}>
+          onClick={e => { if (!active) this.props.onChange(item.value) }}>
             {item.display}
         </button>
       ); 

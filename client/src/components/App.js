@@ -8,6 +8,11 @@ import logo from '../images/laika-top.png'
 
 
 class App extends Component {
+
+  handleInputChange = (format, input) => {
+    console.log(`format: ${format} - input: ${input}`)
+  }
+
   render() {
     return (
       <div className="row">
@@ -17,7 +22,7 @@ class App extends Component {
           <img src={logo}/>
           <h2>Transformer Webtool</h2>
 
-          <InputPanel />
+          <InputPanel onChange={this.handleInputChange}/>
           <DocPanel />
 
         </div>
