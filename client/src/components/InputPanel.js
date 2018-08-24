@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
-import TitleBar from './TitleBar.js'
+import TitleBar from './TitleBar'
+import ButtonGroup from './ButtonGroup'
 
 class InputPanel extends Component {
+
+  state = {
+    selectedFormat: "md"
+  }
+
+  formats = [
+    { value: "md", display: "Markdown" }, 
+    { value: "rst", display: "reStructuredText" }
+  ]
+
+  handleFormatChange = value => { this.setState({ selectedFormat: value }) }
+
   render() {
     return (
       <div>
@@ -9,10 +22,7 @@ class InputPanel extends Component {
         <TitleBar title="Input" />
         
         <div className="input">
-          <div className="btn-group">
-            <button type="button" className="btn active">Markdown</button>
-            <button type="button" className="btn">reStructuredText</button>
-          </div>
+          <ButtonGroup items={this.formats} value={this.state.selectedFormat} onChange={this.handleFormatChange}/>
           <textarea defaultValue={""} />
           <div className="counter"><span>[[input_length]] characters</span> ([[maxChars]] max)</div>
         </div>

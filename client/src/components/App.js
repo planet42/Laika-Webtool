@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import TitleBar from './TitleBar.js'
-import DocPanel from './DocPanel.js'
-import InputPanel from './InputPanel.js'
-import TextPanel from './TextPanel.js'
-import HtmlPanel from './HtmlPanel.js';
+import DocPanel from './DocPanel'
+import InputPanel from './InputPanel'
+import TextPanel from './TextPanel'
+import HtmlPanel from './HtmlPanel';
 import '../css/main.css'; 
 import logo from '../images/laika-top.png'
 
