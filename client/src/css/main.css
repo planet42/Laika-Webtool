@@ -91,8 +91,13 @@ textarea {
   margin: 0px;
   line-height: 20px;
   min-height: 20px;
-  
   word-wrap: break-word;
+}
+
+.collapsible {
+  position: relative;
+  overflow: hidden;
+  transition: height .35s ease;
 }
 
 .input {
@@ -187,13 +192,6 @@ pre {
   vertical-align: middle;
   margin-bottom: 15px;
   margin-top: 11px;
-}
-
-.collapse {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  transition: height .35s ease;
 }
 
 .bottom-panel {
