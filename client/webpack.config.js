@@ -37,5 +37,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'  
     })
-  ]
+  ],
+  devServer: {
+    proxy: {
+      '/transform': 'http://localhost:8080'
+    }
+  }
 }

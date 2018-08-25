@@ -4,12 +4,13 @@
   "description": "React Skeleton",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --mode development --port 3000 --open --hot",
     "build": "webpack --mode production"
   },
   "author": "Jens Halm",
   "license": "Apache-2.0",
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
