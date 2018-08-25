@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
-import TitleBar from './TitleBar.js'
+import Panel from './Panel'
 
 class TextPanel extends Component {
   render() {
     return (
-      <div className={this.props.bottom ? "bottom-panel" : undefined}>
-        
-        <TitleBar title={this.props.title} />
-        
-        <div>
-          <pre>{this.props.content}</pre>
-        </div>
-        
-      </div>  
+      <Panel kind="text" title={this.props.title} bottom={this.props.bottom}>
+        <pre>{this.props.content}</pre>
+      </Panel>
     );
   }
 }

@@ -4,6 +4,7 @@ import DocPanel from './DocPanel'
 import InputPanel from './InputPanel'
 import TextPanel from './TextPanel'
 import HtmlPanel from './HtmlPanel';
+import '../css/grid.css';
 import '../css/main.css'; 
 import logo from '../images/laika-top.png'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TitleBar from './TitleBar'
+import Panel from './Panel'
 import ButtonGroup from './ButtonGroup'
 
 class InputPanel extends Component {
@@ -34,19 +34,13 @@ class InputPanel extends Component {
     const numInputChars = this.state.markupInput.length;
     const counterClass = this.inputTooLong() ? "red" : undefined;
     return (
-      <div>
-        
-        <TitleBar title="Input" />
-        
-        <div className="input">
-          <ButtonGroup items={this.formats} value={this.state.selectedFormat} onChange={this.handleFormatChange}/>
-          <textarea defaultValue={""} onChange={this.handleInputChange}/>
-          <div className="counter">
-            <span className={counterClass}>{numInputChars} characters</span> ({this.maxInputChars} max)
-          </div>
-        </div>
-        
-      </div>  
+      <Panel kind="input" title="Input">
+        <ButtonGroup items={this.formats} value={this.state.selectedFormat} onChange={this.handleFormatChange}/>
+        <textarea defaultValue={""} onChange={this.handleInputChange}/>
+        <div className="counter">
+          <span className={counterClass}>{numInputChars} characters</span> ({this.maxInputChars} max)
+        </div>    
+      </Panel>  
     );
   }
 }

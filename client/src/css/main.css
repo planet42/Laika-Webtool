@@ -7,30 +7,6 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
-.row {
-  width: 1526px;
-  margin-top: 150px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.left, .middle, .right {
-  float: left;
-  width: 480px;
-}
-
-.left {
-  text-align: center;
-}
-
-.middle, .right {
-  margin-left: 40px;
-}
-
-.middle-right {
-  float: left;
-}
-
 h1, .title-bar {
   font-family: 'Ubuntu', sans-serif;
   font-weight: normal;
@@ -105,27 +81,23 @@ textarea {
   border-radius: 7px;
 }
 
-.input {
+.panel-body {
   background-color: #ebf6f7;
   border: 1px solid #c3d6d8;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
 
-  padding: 5px;
-}
-
-pre, .output, .docs {
-  background-color: #ebf6f7;
-  border: 1px solid #c3d6d8;
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-
-  padding: 9.5px;
+  padding: 0 12px 0 12px;
   margin: 0px;
   line-height: 20px;
   min-height: 20px;
   
   word-wrap: break-word;
+}
+
+.input {
+  padding: 4px;
+  line-height: 17px;
 }
 
 .docs {
@@ -228,10 +200,6 @@ pre {
   margin-top: 10px;
 }
 
-.right {
-  float: right;
-}
-
 .counter {
   text-align: right;
   margin-top: 3px;
@@ -252,48 +220,3 @@ pre {
   
   border-radius: 3px;
 }
-
-
-@media (max-width: 1536px) {
-  .right {
-    float: none;
-    margin-left: 0px;
-  }
-  
-  .middle {
-    float: none;
-  }
-  
-  .row {
-    width: 1006px;
-  }
-  
-  .right {
-    margin-top: 10px;
-    margin-left: 40px;
-  }
-  
-}
-
-@media (max-width: 1016px) {
-  .middle-right {
-    float: none;
-    margin-left: 0px;
-    margin-top: 10px;
-  }
-  
-  .middle, .right {
-    margin-left: 0px;
-  }
-  
-  .left {
-    float: none;
-  }
-  
-  .row {
-    width: 480px;
-    margin-top: 30px;
-  }
-  
-}
-
