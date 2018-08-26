@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import TitleBar from './TitleBar'
+import { collapse, expand } from './AutoHeightTransform'
 
 class Panel extends Component {
   
+  constructor(props) {
+    super(props);
+    this.panelBody = React.createRef();
+  }
+
   state = {
     collapsed: false
   }
   
-  handleCollapseToggle = () => { this.setState({ collapsed: !this.state.collapsed }) }
+  handleCollapseToggle = () => { this.setState(prevState => { 
+    if (prevState.collapsed) expand(this.panelBody.current); 
+    else collapse(this.panelBody.current);
+    return {
+      collapsed: !prevState.collapsed 
+    }
+  })}
 
   render() {
-    const bodyStyle = this.state.collapsed ?
-      { height: '0px' } :
-      { height: 'auto'};
     const bodyClasses = `panel-body ${this.props.kind}`;
     const panelClasses = this.props.bottom ? "bottom-panel" : undefined;
     return (
@@ -20,7 +29,7 @@ class Panel extends Component {
         
         <TitleBar title={this.props.title} collapsed={this.state.collapsed} onToggleCollapse={this.handleCollapseToggle}/>
         
-        <div style={bodyStyle} className='collapsible'>
+        <div className='collapsible' ref={this.panelBody}>
           <div className={bodyClasses}>
             {this.props.children}
           </div>
