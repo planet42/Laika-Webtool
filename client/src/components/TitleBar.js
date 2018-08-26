@@ -7,7 +7,7 @@ class TitleBar extends Component {
     return (
       
       <div className="title-bar">
-        <div className="title">{this.props.title}</div>
+        <div className="title-text">{this.props.title}</div>
         <div className="collapse-button">
           <a onClick={this.props.onToggleCollapse}>{icon}</a>
         </div>
