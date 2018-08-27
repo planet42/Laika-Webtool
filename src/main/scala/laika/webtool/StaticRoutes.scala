@@ -28,9 +28,11 @@ object StaticRoutes {
 
   val all: Route = {
     (pathEndOrSingleSlash & redirectToTrailingSlashIfMissing(StatusCodes.TemporaryRedirect)) {
-      getFromResource("public/webtool.html")
+      getFromResource("public/index.html")
+    } ~ pathPrefix("bundle.js") {
+      getFromResource("public/bundle.js")
     } ~ pathPrefix("assets") {
-      getFromResourceDirectory("public")
+      getFromResourceDirectory("public/assets")
     }
   }
 

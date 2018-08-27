@@ -1,9 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: __dirname + "/dist",
+    path: path.resolve(__dirname, "../src/main/resources/public"),
     filename: 'bundle.js'
   },
   module: {
@@ -28,7 +29,11 @@ module.exports = {
       {
         test: /\.(jpg|png|woff)$/,
         use: {
-          loader: 'file-loader'
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'assets/'
+          }
         }  
       }
     ]  

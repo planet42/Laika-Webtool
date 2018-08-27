@@ -27,6 +27,7 @@ out/
 
 #npm
 node_modules/
+src/main/resources/public/
 
 # Other
 *.pyc
