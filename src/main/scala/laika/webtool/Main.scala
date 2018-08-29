@@ -33,9 +33,9 @@ object Main {
     implicit val system = ActorSystem(serviceName)
     implicit val mat = ActorMaterializer()
 
-    val routes = TransformerRoutes.all ~ StaticRoutes.all
+    val routes = TransformerRoutes.all ~ StaticRoutes.all ~ StatusRoutes.all
 
-    Http().bindAndHandle(routes, "localhost", 8080)
+    Http().bindAndHandle(routes, "0.0.0.0", 8080)
 
   }
 

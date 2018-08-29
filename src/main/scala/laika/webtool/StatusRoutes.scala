@@ -16,22 +16,22 @@
 
 package laika.webtool
 
-import akka.http.scaladsl.model.StatusCodes
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+
+import scala.util.Properties
 
 /**
   * @author Jens Halm
   */
-object StaticRoutes {
+object StatusRoutes {
+
+  lazy val version = Properties.envOrElse("VERSION", "<unknown>")
 
   val all: Route = {
-    (pathEndOrSingleSlash & redirectToTrailingSlashIfMissing(StatusCodes.TemporaryRedirect)) {
-      getFromResource("public/index.html")
-    } ~ pathPrefix("bundle.js") {
-      getFromResource("public/bundle.js")
-    } ~ pathPrefix("assets") {
-      getFromResourceDirectory("public/assets")
+    (get & path("status")) {
+      complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, version))
     }
   }
 
